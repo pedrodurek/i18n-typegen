@@ -1,0 +1,22 @@
+{
+  "name": "i18n-type-gen",
+  "version": "1.0.0",
+  "description": "Types generator for i18n",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "i18n",
+    "typescript",
+    "generator",
+    "ts",
+    "d.ts",
+    "types"
+  ],
+  "author": "Pedro Durek",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}
