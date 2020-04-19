@@ -4,6 +4,8 @@
   "description": "Types generator for i18n",
   "main": "src/index.ts",
   "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "yarn clean && tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,9 +16,18 @@
     "d.ts",
     "types"
   ],
+  "bin": {
+    "i18n-gen": "dist/bin.js"
+  },
   "author": "Pedro Durek",
   "license": "MIT",
   "devDependencies": {
+    "@types/inquirer": "^6.5.0",
+    "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "change-case": "^4.1.1",
+    "inquirer": "^7.1.0"
   }
 }
