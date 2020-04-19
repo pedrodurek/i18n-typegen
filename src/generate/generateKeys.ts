@@ -2,12 +2,12 @@ import { Resource } from './types';
 
 class GenerateKeys {
   #ns: string;
-  #keys: string[]
+  #keys: string[];
 
   constructor(ns: string, obj: Resource) {
     this.#ns = ns;
     this.#keys = [];
-    this.generateUnionKeys(obj, '')
+    this.generateUnionKeys(obj, '');
   }
 
   private isEmptyOrPrimitive(input: Resource) {
@@ -51,7 +51,6 @@ class GenerateKeys {
     const result = this.#keys.join(`' | '${this.#ns}:`);
     return `${this.#ns}: '${this.#ns}:${result}'`;
   }
-
 }
 
 export default GenerateKeys;

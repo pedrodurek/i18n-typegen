@@ -1,7 +1,7 @@
-import inquirer from "inquirer";
-import path from "path";
-import GenerateKeys from "./generate/generateKeys";
-import { generateTemplate } from "./generate/generateTypes";
+import inquirer from 'inquirer';
+import path from 'path';
+import GenerateKeys from './generate/generateKeys';
+import { generateTemplate } from './generate/generateTypes';
 
 const cmd = process.argv[2];
 
@@ -13,10 +13,10 @@ type Resource =
     };
 
 const convert = (obj: Resource) => {
-  if (typeof obj !== "string" && !Array.isArray(obj)) {
+  if (typeof obj !== 'string' && !Array.isArray(obj)) {
     const [lng] = Object.keys(obj);
     const result = Object.entries(obj[lng]).map(
-      ([key, value]) => new GenerateKeys(key, value)
+      ([key, value]) => new GenerateKeys(key, value),
     );
     console.log(generateTemplate(result));
   }
@@ -26,18 +26,18 @@ const setup = () => {
   inquirer
     .prompt([
       {
-        type: "input",
-        name: "resources",
-        message: "Where is your resources file?:",
-        default: "i18n/resources.js",
+        type: 'input',
+        name: 'resources',
+        message: 'Where is your resources file?:',
+        default: 'i18n/resources.js',
         // default: "src/i18n/resources.ts",
         validate: (str: string) => str.length > 0,
       },
       {
-        type: "input",
-        name: "output",
-        message: "Where to write the output?:",
-        default: "src/i18n/types.ts",
+        type: 'input',
+        name: 'output',
+        message: 'Where to write the output?:',
+        default: 'src/i18n/types.ts',
         validate: (str: string) => str.length > 0,
       },
     ])
@@ -48,11 +48,11 @@ const setup = () => {
 };
 
 switch (cmd) {
-  case "init":
+  case 'init':
     setup();
     break;
-  case "generate":
+  case 'generate':
     break;
   default:
-    console.log("Invalid argument");
+    console.log('Invalid argument');
 }

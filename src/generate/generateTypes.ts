@@ -1,5 +1,5 @@
-import GenerateKeys from "./generateKeys";
-import { Resource } from "./types";
+import GenerateKeys from './generateKeys';
+import { Resource } from './types';
 
 const normalizeContext = (context: GenerateKeys[], isArrayKeys: boolean) =>
   context.reduce(
@@ -7,7 +7,7 @@ const normalizeContext = (context: GenerateKeys[], isArrayKeys: boolean) =>
       `${acc}\n  ${
         isArrayKeys ? value.getTypedArrayKeys() : value.getTypedKeys()
       };`,
-    ""
+    '',
   );
 
 const renderType = (typeName: string, typeValue: string, isObj = true) =>
@@ -19,12 +19,12 @@ const getKeysContext = (context: GenerateKeys[]) => {
   const keys = normalizeContext(context, false);
   const arrayKeys = normalizeContext(context, true);
   const translationKey = context
-    .find((value) => value.getNamespace() === "translation")
+    .find((value) => value.getNamespace() === 'translation')
     ?.getTypedValue();
   return (
-    renderType("Keys", keys) +
-    renderType("ArrayKeys", arrayKeys) +
-    renderType("TranslationKey", translationKey, false)
+    renderType('Keys', keys) +
+    renderType('ArrayKeys', arrayKeys) +
+    renderType('TranslationKey', translationKey, false)
   );
 };
 
@@ -73,7 +73,7 @@ declare module "react-i18next" {
 `;
 
 export const generateOutput = (obj: Resource) => {
-  if (typeof obj !== "string" && !Array.isArray(obj)) {
+  if (typeof obj !== 'string' && !Array.isArray(obj)) {
     const [lng] = Object.keys(obj);
     const result = Object.entries(obj[lng]).map(([key, value]) => {
       return new GenerateKeys(key, value);
