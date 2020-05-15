@@ -1,26 +1,43 @@
 import inquirer from 'inquirer';
-// import path from 'path';
-// import { generateOutput } from './generate/generateTypes';
 import { getQuestion } from './questions';
 import { addScriptToPackageFile, generateConfig } from './init';
+import meow from 'meow';
+import { writeTypes } from './generate';
 
-const cmd = process.argv[2];
+const cli = meow(
+  `
+	Usage
+	  $ i18n-typegen <action>
 
-const setup = () => {
-  inquirer.prompt(getQuestion()).then(({ script, config, ...rest }) => {
-    // const test = YAML.stringify(answer);
-    addScriptToPackageFile(script, config);
-    generateConfig(config, rest);
-    // const url = path.resolve(__dirname, answer.resources);
-    // import(url).then((result) => generateOutput(result.default));
-  });
-};
+	Options
+	  --config, -c  Path name of the YAML config file
+
+	Examples
+	  $ i18n-typegen generate --config i18ngen.yml
+`,
+  {
+    flags: {
+      config: {
+        type: 'string',
+        alias: 'c',
+        default: 'i18ngen.yml',
+      },
+    },
+  },
+);
+
+const [cmd] = cli.input;
 
 switch (cmd) {
   case 'init':
-    setup();
+    inquirer.prompt(getQuestion()).then(({ script, config, ...rest }) => {
+      addScriptToPackageFile(script, config);
+      generateConfig(config, rest);
+    });
     break;
   case 'generate':
+  case undefined:
+    writeTypes(cli.flags.config);
     break;
   default:
     console.log('Invalid argument');
