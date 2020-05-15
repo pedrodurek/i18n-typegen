@@ -1,5 +1,4 @@
 import GenerateKeys from './generateKeys';
-import { Resource } from './types';
 
 const normalizeContext = (context: GenerateKeys[], isArrayKeys: boolean) =>
   context.reduce(
@@ -71,13 +70,3 @@ declare module "react-i18next" {
   ): DefaultUseTranslationResponse<T>;
 }
 `;
-
-export const generateOutput = (obj: Resource) => {
-  if (typeof obj !== 'string' && !Array.isArray(obj)) {
-    const [lng] = Object.keys(obj);
-    const result = Object.entries(obj[lng]).map(([key, value]) => {
-      return new GenerateKeys(key, value);
-    });
-    console.log(generateTemplate(result));
-  }
-};
