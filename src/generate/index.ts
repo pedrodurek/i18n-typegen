@@ -19,7 +19,7 @@ const generateOutput = (obj: Resource) => {
 export const writeTypes = async (configPath: string) => {
   const path = resolve(process.cwd(), configPath);
   const config = YAML.load(path);
-  const url = resolve(__dirname, config.resources);
+  const url = resolve(process.cwd(), config.resources);
   const result = await import(url);
   generateOutput(result.default);
 };
