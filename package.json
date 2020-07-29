@@ -1,15 +1,11 @@
 {
-  "name": "i18n-type-gen",
-  "version": "1.0.0",
+  "name": "i18n-typegen",
+  "version": "0.0.1",
+  "author": "Pedro Durek <pedro_hmd@hotmail.com>",
   "description": "Types generator for i18n",
-  "main": "src/index.ts",
-  "scripts": {
-    "clean": "rimraf ./dist",
-    "build": "yarn clean && tsc -p .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier:check": "prettier --ignore-path .gitignore --check \"**/*.{ts,yml}\"",
-    "prettier": "prettier --ignore-path .gitignore --write --list-different \"**/*.{ts,yml}\""
-  },
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "keywords": [
     "i18n",
     "typescript",
@@ -19,16 +15,14 @@
     "types"
   ],
   "bin": {
-    "i18n-gen": "dist/bin.js"
+    "i18n-typegen": "dist/index.js"
   },
-  "author": "Pedro Durek",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/inquirer": "^6.5.0",
-    "@types/yamljs": "^0.2.30",
-    "prettier": "^2.0.4",
-    "rimraf": "^3.0.2",
-    "typescript": "^3.8.3"
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "yarn clean && rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier:check": "prettier --ignore-path .gitignore --check \"**/*.{ts,yml}\"",
+    "prettier": "prettier --ignore-path .gitignore --write --list-different \"**/*.{ts,yml}\""
   },
   "dependencies": {
     "change-case": "^4.1.1",
@@ -36,5 +30,15 @@
     "inquirer": "^7.1.0",
     "meow": "^7.0.0",
     "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^6.5.0",
+    "@types/yamljs": "^0.2.30",
+    "i18n-typegen": "../i18n-typegen",
+    "prettier": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.21.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "typescript": "^3.8.3"
   }
 }
