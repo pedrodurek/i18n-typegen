@@ -15,7 +15,7 @@
     "types"
   ],
   "bin": {
-    "i18n-typegen": "dist/index.js"
+    "i18n-typegen": "dist/index.cjs.js"
   },
   "scripts": {
     "clean": "rimraf ./dist",
