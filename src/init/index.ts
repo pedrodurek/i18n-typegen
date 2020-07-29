@@ -7,8 +7,7 @@ export const addScriptToPackageFile = (
   scriptName: string,
   configName: string,
 ) => {
-  const path = resolve(process.cwd(), 'package2.json');
-  // const path = resolve(process.cwd(), 'package.json');
+  const path = resolve(process.cwd(), 'package.json');
   const content = readSync(path);
   const { indent } = detectIndent(content);
 

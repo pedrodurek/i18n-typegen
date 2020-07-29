@@ -3,8 +3,7 @@ export const getQuestion = () => [
     type: 'input',
     name: 'resources' as const,
     message: 'Where is your resources file?',
-    default: 'i18n/resources.js',
-    // default: "src/i18n/resources.ts",
+    default: 'src/i18n/resources.ts',
     validate: (str: string) => str.length > 0,
   },
   {
